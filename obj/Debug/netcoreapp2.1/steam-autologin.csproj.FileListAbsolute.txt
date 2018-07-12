@@ -1,0 +1,11 @@
+/home/faith/Source/steam-autologin/obj/Debug/netcoreapp2.1/steam-autologin.csprojAssemblyReference.cache
+/home/faith/Source/steam-autologin/obj/Debug/netcoreapp2.1/steam-autologin.csproj.CoreCompileInputs.cache
+/home/faith/Source/steam-autologin/obj/Debug/netcoreapp2.1/steam-autologin.AssemblyInfoInputs.cache
+/home/faith/Source/steam-autologin/obj/Debug/netcoreapp2.1/steam-autologin.AssemblyInfo.cs
+/home/faith/Source/steam-autologin/bin/Debug/netcoreapp2.1/steam-autologin.deps.json
+/home/faith/Source/steam-autologin/bin/Debug/netcoreapp2.1/steam-autologin.runtimeconfig.json
+/home/faith/Source/steam-autologin/bin/Debug/netcoreapp2.1/steam-autologin.runtimeconfig.dev.json
+/home/faith/Source/steam-autologin/bin/Debug/netcoreapp2.1/steam-autologin.dll
+/home/faith/Source/steam-autologin/bin/Debug/netcoreapp2.1/steam-autologin.pdb
+/home/faith/Source/steam-autologin/obj/Debug/netcoreapp2.1/steam-autologin.dll
+/home/faith/Source/steam-autologin/obj/Debug/netcoreapp2.1/steam-autologin.pdb
