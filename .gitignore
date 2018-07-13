@@ -3,3 +3,6 @@ bin/
 
 # temp build files
 obj/
+
+# vscode dir
+.vscode/
