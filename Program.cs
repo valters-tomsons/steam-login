@@ -91,16 +91,12 @@ namespace steam_autologin
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "nohup",
-                    Arguments = "steam-runtime > /dev/null &",
-                    RedirectStandardOutput = false,
-                    UseShellExecute = false
+                    FileName = "/bin/bash",
+                    Arguments = "-c \"nohup steam-runtime > /dev/null &\"",
                 }
             };
 
             proc.Start();
-
-            //Process.Start("nohup steam-runtime > /dev/null &");
         }
     }
 }
