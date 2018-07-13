@@ -6,4 +6,4 @@ This application edits registry.vdf that Steam uses to autologin user accounts. 
 Usage:
 `dotnet steam-autologin.dll <username>`
 
-After running this program, restart Steam.
+After running the program, any current steam process will be terminated and steam-runtime will be launched.
