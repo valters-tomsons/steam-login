@@ -1,6 +1,5 @@
 # compiled files
 bin/
 
-# build files
-*.dll
-*.pdb
+# temp build files
+obj/
