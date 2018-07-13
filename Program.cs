@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace steam_autologin
@@ -24,6 +25,7 @@ namespace steam_autologin
             if(username.Length > 3)
             {
                 WriteUsername(username, regFile);
+                RestartSteam();
             }
             else{
                 System.Console.WriteLine("Username too short.");
@@ -57,6 +59,41 @@ namespace steam_autologin
                 System.Console.WriteLine($"'{file}' doesn't exist!");
                 System.Console.WriteLine("Nothing was written.");
             }
+        }
+
+        static void RestartSteam()
+        {
+            TerminateSteam();
+            StartSteamRuntime();
+        }
+
+        static void TerminateSteam()
+        {
+            foreach(Process proc in Process.GetProcessesByName("steam"))
+            {
+                System.Console.WriteLine($"Killing process PID: {proc.Id}");
+                proc.Kill();
+            }
+        }
+
+        static void StartSteamRuntime()
+        {
+            //Start steam detached from terminal and without output
+
+            Process proc = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "nohup",
+                    Arguments = "steam-runtime > /dev/null &",
+                    RedirectStandardOutput = false,
+                    UseShellExecute = false
+                }
+            };
+
+            proc.Start();
+
+            //Process.Start("nohup steam-runtime > /dev/null &");
         }
     }
 }
