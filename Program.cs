@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace steam_autologin
 {
@@ -11,6 +12,12 @@ namespace steam_autologin
 
         static void Main(string[] args)
         {
+            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                System.Console.WriteLine("This program works only under Linux.");
+                return;
+            }
+
             string username;
 
             if(args.Length == 0)
