@@ -11,8 +11,9 @@ Usage:
 After running the program, any current steam process will be terminated and steam-runtime will be launched.
 
 ## Launch script example
-Just put the files in a folder, for example : `~/.steam-login`
-Make a script `steam-login` in `/usr/local/bin`and make it executable.
+Just put the files in a folder, for example : `~/.steam-login`. Make a script `steam-login` in `/usr/local/bin`and make it executable.
+
+Put this in the file:
 
 `dotnet ~/.steam-login/steam-autologin.dll $1`
 
