@@ -25,14 +25,16 @@ namespace steam_autologin
                 Console.WriteLine("Enter Steam username to login with: ");
                 username = Console.ReadLine();
             }
-            else{
+            else
+            {
                 username = args[0];
             }
 
             if(username.Length > 3)
             {
                 WriteUsername(username, regFile);
-                RestartSteam();
+                bool runNative = args[1].ToLower().Equals("native");
+                RestartSteam(runNative);
             }
             else{
                 System.Console.WriteLine("Username too short.");
@@ -62,16 +64,17 @@ namespace steam_autologin
 
                 System.Console.WriteLine($"{file} written!");
             }
-            else{
+            else
+            {
                 System.Console.WriteLine($"'{file}' doesn't exist!");
                 System.Console.WriteLine("Nothing was written.");
             }
         }
 
-        static void RestartSteam()
+        static void RestartSteam(bool native = false)
         {
             TerminateSteam();
-            StartSteam();
+            StartSteam(native);
         }
 
         static void TerminateSteam()
