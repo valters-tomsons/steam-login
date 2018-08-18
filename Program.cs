@@ -71,7 +71,7 @@ namespace steam_autologin
         static void RestartSteam()
         {
             TerminateSteam();
-            StartSteamRuntime();
+            StartSteam();
         }
 
         static void TerminateSteam()
@@ -83,16 +83,21 @@ namespace steam_autologin
             }
         }
 
-        static void StartSteamRuntime()
+        static void StartSteam(bool native = false)
         {
-            //Start steam detached from terminal and without output
+            string steamFlavor = "runtime";
+            if(native)
+            {
+                steamFlavor = "native";
+            }
 
+            //Start steam detached from terminal and without output
             Process proc = new Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "/bin/bash",
-                    Arguments = "-c \"nohup steam-runtime > /dev/null &\"",
+                    Arguments = $"-c \"nohup steam-{steamFlavor} > /dev/null &\"",
                 }
             };
 
