@@ -9,3 +9,16 @@ Usage:
 `dotnet steam-autologin.dll <username>`
 
 After running the program, any current steam process will be terminated and steam-runtime will be launched.
+
+## Launch script example
+Just put the files in a folder, for example : `~/.steam-login`
+Make a script `steam-login` in `/usr/local/bin`and make it executable.
+
+`dotnet ~/.steam-login/steam-autologin.dll $1`
+
+or if you want to use steam native: 
+
+`dotnet ~/.steam-login/steam-autologin.dll $1 native`
+
+
+then just run `steam-login <username>` from terminal!
