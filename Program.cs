@@ -36,7 +36,7 @@ namespace steam_login
 
                 var runNative = false;
 
-                if (args[1] != null)
+                if (args.Length > 1)
                 {
                     runNative = args[1].ToLower().Equals("native");
                 }
