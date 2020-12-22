@@ -3,18 +3,18 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace steam_autologin
+namespace steam_login
 {
-    class Program
+    internal static class Program
     {
-        static string homePath = Environment.GetEnvironmentVariable("HOME");
-        static string regFile = $"{homePath}/.steam/registry.vdf";
+        private static readonly string homePath = Environment.GetEnvironmentVariable("HOME");
+        private static readonly string regFile = $"{homePath}/.steam/registry.vdf";
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             if(!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                System.Console.WriteLine("This program works only under Linux.");
+                Console.WriteLine("This program works only under Linux.");
                 return;
             }
 
@@ -33,21 +33,27 @@ namespace steam_autologin
             if(username.Length > 3)
             {
                 WriteUsername(username, regFile);
-                bool runNative = args[1].ToLower().Equals("native");
+
+                var runNative = false;
+
+                if (args[1] != null)
+                {
+                    runNative = args[1].ToLower().Equals("native");
+                }
+
                 RestartSteam(runNative);
             }
-            else{
-                System.Console.WriteLine("Username too short.");
+            else
+            {
+                Console.WriteLine("Username too short.");
             }
-
-            
         }
 
-        static void WriteUsername(string username, string file)
+        private static void WriteUsername(string username, string file)
         {
             if(File.Exists(file))
             {
-                System.Console.WriteLine($"Writing '{username}' to '{file}'");
+                Console.WriteLine($"Writing '{username}' to '{file}'");
 
                 string[] fileBuffer = File.ReadAllLines(file);
 
@@ -62,22 +68,22 @@ namespace steam_autologin
 
                 File.WriteAllLines(file, fileBuffer);
 
-                System.Console.WriteLine($"{file} written!");
+                Console.WriteLine($"{file} written!");
             }
             else
             {
-                System.Console.WriteLine($"'{file}' doesn't exist!");
-                System.Console.WriteLine("Nothing was written.");
+                Console.WriteLine($"'{file}' doesn't exist!");
+                Console.WriteLine("Nothing was written.");
             }
         }
 
-        static void RestartSteam(bool native = false)
+        private static void RestartSteam(bool native = false)
         {
             TerminateSteam();
             StartSteam(native);
         }
 
-        static void TerminateSteam()
+        private static void TerminateSteam()
         {
             foreach(Process proc in Process.GetProcessesByName("steam"))
             {
@@ -86,7 +92,7 @@ namespace steam_autologin
             }
         }
 
-        static void StartSteam(bool native = false)
+        private static void StartSteam(bool native = false)
         {
             string steamFlavor = "runtime";
             if(native)
