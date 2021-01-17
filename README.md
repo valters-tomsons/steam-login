@@ -1,25 +1,16 @@
-# steam-autologin
-Auto login utility for linux.
+# steam-login
 
-This application edits registry.vdf that Steam uses to autologin user accounts. This is created so you can switch between multiple user profiles without having to manually log in every time (or write Steam Guard code) you wish to change an account.
+Simple Steam account manager for linux.
 
-When logging in with your accounts, be sure to check "Remember Password".
+## Why?
 
-Usage:
-`dotnet steam-autologin.dll <username>`
+Using `steam-login <username>` instead of `steam` allows you to log in previously accessed accounts without having to retype password and/or Steam Guard code.
 
-After running the program, any current steam process will be terminated and steam-runtime will be launched.
+## Usage
 
-## Launch script example
-Just put the files in a folder, for example : `~/.steam-login`. Make a script `steam-login` in `/usr/local/bin`and make it executable.
+- Install `steam-login`
+- Launch `steam-login <username>` where `<username>` is replaced with your login username
+- Enter your password and make sure `Remember Account` is **checked**
+- To change account, launch `steam-login` and provide a different username
 
-Put this in the file:
-
-`dotnet ~/.steam-login/steam-autologin.dll $1`
-
-or if you want to use steam native: 
-
-`dotnet ~/.steam-login/steam-autologin.dll $1 native`
-
-
-then just run `steam-login <username>` from terminal!
+**Please Note:** Do not manually logout of account using steam, as this seems to erase all account history
