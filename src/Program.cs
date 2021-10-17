@@ -9,17 +9,6 @@ namespace SteamLogin
     {
         private static void Main(string[] args)
         {
-            ISteamConfiguration steamConfig = null;
-
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                steamConfig = new LinuxSteam();
-            }
-            else if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                steamConfig = new WindowsSteam();
-            }
-
             if(args.Length < 1 || string.IsNullOrWhiteSpace(args[0]))
             {
                 Console.WriteLine("No username given");
@@ -29,8 +18,24 @@ namespace SteamLogin
             var username = args[0];
             Console.WriteLine($"Logging in {username}");
 
+            ISteamConfiguration steamConfig = ResolvePlatform();
             var app = new SteamLogin(steamConfig);
             app.Login(username);
         }
+
+        private static ISteamConfiguration ResolvePlatform()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return new LinuxSteam();
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return new WindowsSteam();
+            }
+
+            throw new PlatformNotSupportedException();
+        }
     }
+
 }
