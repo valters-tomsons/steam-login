@@ -25,27 +25,15 @@ jobs:
       run: dotnet publish -r linux-x64 -c Release -o "release-linux"
     - name: Publish Windows-x64
       run: dotnet publish -r linux-x64 -c Release -o "release-windows"
-    - name: Archive Linux Build
-      uses: ihiroky/archive-action@v1
-      with:
-        root_dir: "./release-linux"
-        file_path: "./artifact/steam-login_linux_r$GITHUB_RUN_ID.tar.xz"
-        verbose: true
-    - name: Archive Windows Build
-      uses: ihiroky/archive-action@v1
-      with:
-        root_dir: "./release-windows"
-        file_path: "./artifact/steam-login_windows_r$GITHUB_RUN_ID.tar.xz"
-        verbose: true
     - name: Upload Linux Build
       uses: actions/upload-artifact@v2.2.4
       with:
         name: "steam-login_linux"
-        path: "./artifact/steam-login_linux_r*"
+        path: "./release-linux"
         if-no-files-found: error
     - name: Upload Windows Build
       uses: actions/upload-artifact@v2.2.4
       with:
         name: "steam-login_windows"
-        path: "./artifact/steam-login_windows_r*"
+        path: "./release-windows"
         if-no-files-found: error
