@@ -1,9 +1,11 @@
 using System;
+using System.Runtime.Versioning;
 using Microsoft.Win32;
 using SteamLogin.Interfaces;
 
 namespace SteamLogin.Platform
 {
+    [SupportedOSPlatform(platformName: "Windows")]
     public class WindowsSteam : ISteamConfiguration
     {
         public void SetAutoLoginUsername(string username)

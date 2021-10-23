@@ -1,9 +1,11 @@
 using System;
 using System.IO;
+using System.Runtime.Versioning;
 using SteamLogin.Interfaces;
 
 namespace SteamLogin.Platform
 {
+    [SupportedOSPlatform(platformName: "Linux")]
     public class LinuxSteam : ISteamConfiguration
     {
         public Uri GetSteamExecutablePath()
