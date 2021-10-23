@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Versioning;
+using System.Threading.Tasks;
 using SteamLogin.Interfaces;
 
 namespace SteamLogin.Platform
@@ -13,16 +14,22 @@ namespace SteamLogin.Platform
             return new Uri("/usr/bin/steam", UriKind.Absolute);
         }
 
-        public async void SetAutoLoginUsername(string username)
+        public async Task SetAutoLoginUsername(string username)
         {
-            string homePath = Environment.GetEnvironmentVariable("HOME");
-            string file = $"{homePath}/.steam/registry.vdf";
+            var homePath = Environment.GetEnvironmentVariable("HOME");
 
-            if (File.Exists(file))
+            if(homePath is null)
             {
-                Console.WriteLine($"Writing '{username}' to '{file}'");
+                return;
+            }
 
-                string[] fileBuffer = await File.ReadAllLinesAsync(file).ConfigureAwait(false);
+            var filePath = $"{homePath}/.steam/registry.vdf";
+
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine($"Writing '{username}' to '{filePath}'");
+
+                string[] fileBuffer = await File.ReadAllLinesAsync(filePath).ConfigureAwait(false);
 
                 for (int i = 0; i < fileBuffer.Length; i++)
                 {
@@ -33,7 +40,7 @@ namespace SteamLogin.Platform
                     }
                 }
 
-                await File.WriteAllLinesAsync(file, fileBuffer).ConfigureAwait(false);
+                await File.WriteAllLinesAsync(filePath, fileBuffer).ConfigureAwait(false);
             }
         }
     }

@@ -20,6 +20,13 @@ namespace SteamLogin
             TerminateSteam();
 
             var steamPath = _steamConfig.GetSteamExecutablePath();
+
+            if(steamPath is null)
+            {
+                Console.WriteLine("Failed to find Steam executable, not launching...");
+                return;
+            }
+
             StartSteam(steamPath);
         }
 
