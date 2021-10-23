@@ -4,6 +4,15 @@
     <RootNamespace>SteamLogin</RootNamespace>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <RuntimeIdentifiers>linux-x64;win-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
