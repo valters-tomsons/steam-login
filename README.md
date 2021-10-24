@@ -1,6 +1,6 @@
 # steam-login
 
-Simple Steam account manager for linux.
+Simple Steam account manager for Linux & Windows.
 
 ## Why?
 
